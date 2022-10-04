@@ -4,15 +4,74 @@ Notes on different topics related to Latex.
 
 ## Formulas
 
-For inline formulas, enclose the formula in `$…$`. For displayed formulas, use `$$…$$`.
+For inline formulas, enclose the formula in `$…$`. For displayed formulas, use `$$…$$`. These will be rendered differently. 
 
-These render differently. For example, type `$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$` to show:
+For example, type `$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$` to show:
 
-$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
+$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$
 
 or type `$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$` to show:
 
 $$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
+
+## Special symbols
+
+There are a very large number of special symbols and notations.
+
+| Command | Result |
+| ------- | ------ |
+| `\lt` | $\lt$ |
+| `\gt` | $\gt$ |
+| `\le` | $\le$ |
+| `\ge` | $\ge$ |
+| `\neq` | $\neq$ |
+| `\times` | $\times$ |
+| `\cdot` | $\cdot$ |
+| `\div` | $\div$ |
+| `\in` | $\in$ |
+| `\notin` | $\notin$ |
+| `\subset` | $\subset$ |
+| `\approx` | $\approx$ |
+| `\cong` | $\cong$ |
+| `\aleph_0` | $\aleph_0$ |
+| `\nabla` | $\nabla$ |
+| `\partial` | $\partial$ |
+
+### Radical signs 
+
+| Command | Result |
+| ------- | ------ |
+| `\sqrt{x}` | $\sqrt{x}$ |
+| `\sqrt{x^3}` | $\sqrt{x^3}$ |
+| `\sqrt{x}^3` | $\sqrt{x}^3$ |
+
+### Fractions 
+
+| Command | Result |
+| ------- | ------ |
+| `\frac{a+1}{b+1}` | $\frac{a+1}{b+1}$ |
+| `{a+1\over b+1}` | ${a+1\over b+1}$ |
+| `\binom{n+1}{2k}` | $\binom{n+1}{2k}$ |
+
+### Sums and integrals 
+
+| Command | Result |
+| ------- | ------ |
+| `\sum_{i=0}^\infty i^2` | $\sum\limits_{i=0}^\infty i^2$ |
+| `\prod{i=0}^\infty i^2` |  $\prod\limits_{i=0}^\infty i^2$ |
+| `\bigcup{i=0}^\infty i^2` |  $\bigcup\limits_{i=0}^\infty i^2$ |
+| `\bigcap{i=0}^\infty i^2` |  $\bigcap\limits_{i=0}^\infty i^2$ |
+| `\int{i=0}^\infty xdx` |  $\int\limits_{0}^\infty x dx$ |
+| `\oint f(z)` |  $\oint\limits_{0}^\infty f(z)$ |
+
+### Special functions 
+
+| Command | Result |
+| ------- | ------ |
+| `\sin{x}` | $\sin{x}$ |
+| `\ln{10}` | $\ln{10}$ |
+| `\max{(x, y)}` | $\max{(x, y)}$ |
+| `\lim_{x \to +\infty} f(x)` | $\lim\limits_{x \to +\infty} f(x)$ |
 
 ### Greek letters
 
@@ -69,34 +128,6 @@ Ordinary symbols are used for parentheses.
 
 These do not scale with the formula in between, so if you write `(\frac{\sqrt x}{y^3})` the parentheses will be too small: $(\frac{\sqrt x}{y^3})$. Using `\left(…\right)` will make the sizes adjust automatically to the formula they enclose: $\left(\frac{\sqrt x}{y^3}\right)$.
 
-### Sums and integrals 
-
-| Command | Result |
-| ------- | ------ |
-| `\sum_{i=0}^\infty i^2` | $\sum\limits_{i=0}^\infty i^2$ |
-| `\prod{i=0}^\infty i^2` |  $\prod\limits_{i=0}^\infty i^2$ |
-| `\bigcup{i=0}^\infty i^2` |  $\bigcup\limits_{i=0}^\infty i^2$ |
-| `\bigcap{i=0}^\infty i^2` |  $\bigcap\limits_{i=0}^\infty i^2$ |
-| `\int{i=0}^\infty xdx` |  $\int\limits_{0}^\infty x dx$ |
-| `\oint f(z)` |  $\oint\limits_{0}^\infty f(z)$ |
-
-
-### Fractions 
-
-| Command | Result |
-| ------- | ------ |
-| `\frac{a+1}{b+1}` | $\frac{a+1}{b+1}$ |
-| `{a+1\over b+1}` | ${a+1\over b+1}$ |
-| `\binom{n+1}{2k}` | $\binom{n+1}{2k}$ |
-
-### Radical signs 
-
-| Command | Result |
-| ------- | ------ |
-| `\sqrt{x}` | $\sqrt{x}$ |
-| `\sqrt{x^3}` | $\sqrt{x^3}$ |
-| `\sqrt{x}^3` | $\sqrt{x}^3$ |
-
 ### Fonts
 
 | Command | Result |
@@ -110,38 +141,6 @@ These do not scale with the formula in between, so if you write `(\frac{\sqrt x}
 | `\mathsf{abc}` | $\mathsf{abc}$ |
 | `\mathscr{abc}` | $\mathscr{abc}$ |
 | `\mathfrak{abc}` | $\mathfrak{abc}$ |
-
-### Special functions 
-
-| Command | Result |
-| ------- | ------ |
-| `\sin{x}` | $\sin{x}$ |
-| `\ln{10}` | $\ln{10}$ |
-| `\max{(x, y)}` | $\max{(x, y)}$ |
-| `\lim_{x \to +\infty} f(x)` | $\lim\limits_{x \to +\infty} f(x)$ |
-
-## Special symbols
-
-There are a very large number of special symbols and notations.
-
-| Command | Result |
-| ------- | ------ |
-| `\lt` | $\lt$ |
-| `\gt` | $\gt$ |
-| `\le` | $\le$ |
-| `\ge` | $\ge$ |
-| `\neq` | $\neq$ |
-| `\times` | $\times$ |
-| `\cdot` | $\cdot$ |
-| `\div` | $\div$ |
-| `\in` | $\in$ |
-| `\notin` | $\notin$ |
-| `\subset` | $\subset$ |
-| `\approx` | $\approx$ |
-| `\cong` | $\cong$ |
-| `\aleph_0` | $\aleph_0$ |
-| `\nabla` | $\nabla$ |
-| `\partial` | $\partial$ |
 
 ### Accents and diacritical marks 
 
