@@ -1,6 +1,6 @@
-# Latex-Tutorial
+# LaTeX-Tutorial
 
-Notes on different topics related to Latex.
+Notes on different topics related to LaTeX.
 
 ## Formulas
 
