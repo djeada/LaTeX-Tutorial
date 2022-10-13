@@ -2,6 +2,66 @@
 
 Notes on different topics related to LaTeX.
 
+## About LaTeX
+
+The purpose of LaTeX is to produce documents that are clear and easy to read, such as books, articles, and even presentations. The final format is print, or files in various formats, such as PDF, Postscript, or HTML. It is especially convenient to create technical and mathematical documents, but it can also be used to write program documentation or gather notes on different topics.
+
+Similarly to programming languages, LaTeX has its own language in which the document content is written, and it also has tools (compilers) that process the source files and generate the final files. In programming languages, one of the important things is usually a set of libraries with ready-made implementations of various typical operations. LaTeX also has a lot of ready-made packages that allow you to quickly create various elements and types of documents.
+
+According to the LaTeX philosophy one should focus on the content of the document, and not on how it looks. We only care about the text, the images and the structure, and LaTeX does the rest of the work for us to make the result look good. When we want however, we can have a lot of influence on the appearance, but it is not necessary in most cases. This is a crucial difference to many other text editors, where we have to decide on the appearance, font size, font, spacing, title display, etc. on every step.
+
+## Distributions
+
+Source file is a text file containing LaTeX commands and the actual content. 
+
+* The typical LaTeX command is a sequence of letters (small and capital) starting with the *\* character. 
+* The command may have arguments. 
+* The argument is placed between the *{ i }* characters. 
+* Optional arguments are placed between square brackets *[ i ]*.
+
+Every document consists of two parts:
+
+1. preamble and
+2. main part.
+
+The preamble contains the document class, the packages, the title, the author, the date, and other information that is not part of the main content. The main part contains the actual content of the document. The preamble starts with the *\documentclass* command and then continues with various *\usepackage* commands. The main part is enclosed in the *\begin{document}* and *\end{document}* commands.
+
+Let's look at a simple example:
+
+    % Preamble
+    \documentclass{article}
+    \usepackage{graphicx}
+    \title{My first document}
+    \author{John Doe}
+    \date{January 1, 2022}
+
+    % Main part
+    \begin{document}
+    \maketitle
+    \section{Introduction}
+    This is my first document.
+    \end{document}
+
+## Paragraphs and sections
+
+A paragraph is a block of text that is separated from the rest of the text by a blank line. The paragraph is usually indented A paragraph can be started with the *\paragraph* command:
+
+    \paragraph{My first paragraph}
+    This is my first paragraph.
+
+
+Sections are also blocks of text, but they are separated from the rest of the text by a blank line, but they are also used to create a table of contents. Sections are numbered by default and can be nested. A section can be started with the *\section* command:
+
+    \section{Main section}
+    This is the main section.
+
+    \subsection{Subsection}
+    This is a subsection.
+
+    \subsubsection{Subsubsection}
+    This is a subsubsection.
+
+
 ## Formulas
 
 For inline formulas, enclose the formula in `$…$`. For displayed formulas, use `$$…$$`. These will be rendered differently. 
@@ -305,6 +365,9 @@ $$
 $$
 
 ## Tables
+
+Tables are created using the `tabular` environment. The first line of the environment contains the column specification. The `l` column type is for left-aligned text, `c` is for centered text, and `r` is for right-aligned text. The `|` symbol is used to add vertical lines between columns. The rows are separated by `\\` and the columns are separated by `&`.
+
 
 ```Latex
 \begin{table}[t]
