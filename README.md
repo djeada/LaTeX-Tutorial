@@ -152,6 +152,20 @@ $$
 | `\max{(x, y)}` | $\max{(x, y)}$ |
 | `\lim_{x \to +\infty} f(x)` | $\lim\limits_{x \to +\infty} f(x)$ |
 
+### Logic Notations
+
+| Description | Command | Result |
+| ------- | ------ | ------ |
+| there exists at least one | `\exists` | $\exists$ |
+| there is no | `\nexists` | $\nexists$ |
+| for all | `\forall ` | $\forall $ |
+| logical not | `\neg` | $\neg$ |
+| logical or | `\lor` | $\lor$ |
+| logical and | `\land` | $\land$ |
+| implies | `\implies` | $\implies$ |
+| if and only if | `\iff` | $\iff$ |
+| equivalence | `\Leftrightarrow` | $\Leftrightarrow$ |
+
 ### Greek letters
 
 Lowercase letters:
