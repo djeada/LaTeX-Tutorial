@@ -4,6 +4,8 @@ Notes on different topics related to LaTeX.
 
 ## About LaTeX
 
+LaTeX was created by Donald Knuth of Stanford University in 1978.
+
 The purpose of LaTeX is to produce documents that are clear and easy to read, such as books, articles, and even presentations. The final format is print, or files in various formats, such as PDF, Postscript, or HTML. It is especially convenient to create technical and mathematical documents, but it can also be used to write program documentation or gather notes on different topics.
 
 Similarly to programming languages, LaTeX has its own language in which the document content is written, and it also has tools (compilers) that process the source files and generate the final files. In programming languages, one of the important things is usually a set of libraries with ready-made implementations of various typical operations. LaTeX also has a lot of ready-made packages that allow you to quickly create various elements and types of documents.
@@ -419,8 +421,20 @@ Unordered lists:
 * two
 * three
 
-## Editors
+## Links
+
+### Editors
 
 * Gummi: https://gummi.app/
 * Texmaker: https://www.xm1math.net/texmaker/download.html
 * Online editor: https://latexbase.com
+
+### Software that generates LaTeX code: 
+
+* Mathematica
+* Maple
+* GeoGebra
+
+## Handwriting to LaTeX:
+
+* http://detexify.kirelabs.org/classify.html
