@@ -135,7 +135,13 @@ There are a very large number of special symbols and notations.
 
 For the piecewise functions, use `|x|= \begin{cases} x & x\ge 0\\ -x & x<0 \end{cases}`:
 
-$$|x|= \begin{cases} x & x\ge 0\\ -x & x<0 \end{cases}$$
+$$
+|x|= 
+\begin{cases} 
+x & x \ge 0\\ 
+-x & x \lt 0 
+\end{cases}
+$$
 
 ### Special functions 
 
