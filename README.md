@@ -133,7 +133,7 @@ There are a very large number of special symbols and notations.
 | `\mathbb{R} \to \mathbb{Z}` | $\mathbb{R} \to \mathbb{Z}$ |
 | `f \circ g` | $f \circ g$ |
 
-For the piecewise functions, use `|x|= \begin{cases} x & x\ge 0\\ -x & x<0 \end{cases}`:
+For piecewise functions, use `|x|= \begin{cases} x & x\ge 0\\ -x & x<0 \end{cases}`:
 
 $$
 |x|= 
