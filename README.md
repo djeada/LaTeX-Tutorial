@@ -16,7 +16,7 @@ According to the LaTeX philosophy one should focus on the content of the documen
 
 Source file is a text file containing LaTeX commands and the actual content. 
 
-* The typical LaTeX command is a sequence of letters (small and capital) starting with the *\* character. 
+* The typical LaTeX command is a sequence of letters (small and capital) starting with the *\\* character. 
 * The command may have arguments. 
 * The argument is placed between the *{ i }* characters. 
 * Optional arguments are placed between square brackets *[ i ]*.
