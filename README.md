@@ -95,6 +95,7 @@ There are a very large number of special symbols and notations.
 | `\subset` | $\subset$ |
 | `\approx` | $\approx$ |
 | `\cong` | $\cong$ |
+| `\equiv` | $\equiv$ |
 | `\aleph_0` | $\aleph_0$ |
 | `\nabla` | $\nabla$ |
 | `\partial` | $\partial$ |
