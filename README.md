@@ -92,7 +92,6 @@ There are a very large number of special symbols and notations.
 | `\div` | $\div$ |
 | `\in` | $\in$ |
 | `\notin` | $\notin$ |
-| `\subset` | $\subset$ |
 | `\approx` | $\approx$ |
 | `\cong` | $\cong$ |
 | `\equiv` | $\equiv$ |
@@ -153,7 +152,7 @@ $$
 | `\max{(x, y)}` | $\max{(x, y)}$ |
 | `\lim_{x \to +\infty} f(x)` | $\lim\limits_{x \to +\infty} f(x)$ |
 
-### Logic Notations
+### Logic
 
 | Description | Command | Result |
 | ------- | ------ | ------ |
@@ -168,6 +167,18 @@ $$
 | equivalence | `\Leftrightarrow` | $\Leftrightarrow$ |
 | a divides b | `a \mid b` | $a \mid b$ |
 | a does not divide b | `a \nmid b` | $a \nmid b$ |
+
+### Sets
+
+| Command | Result |
+| ------- | ------ |
+| `\varnothing` | $\varnothing$ |
+| `\subset` | $\subset$ |
+| `\subseteq` | $\subseteq$ |
+| `\supset` | $\supset$ |
+| `\supseteq` | $\supseteq$ |
+| `\cup` | $\cup$ |
+| `\cap` | $\cap$ |
 
 ### Greek letters
 
