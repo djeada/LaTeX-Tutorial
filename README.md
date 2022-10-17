@@ -179,6 +179,7 @@ $$
 | `\supseteq` | $\supseteq$ |
 | `\cup` | $\cup$ |
 | `\cap` | $\cap$ |
+| `\setminus` | $\setminus$ |
 
 ### Greek letters
 
