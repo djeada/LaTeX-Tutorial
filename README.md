@@ -164,7 +164,6 @@ $$
 | logical and | `\land` | $\land$ |
 | implies | `\implies` | $\implies$ |
 | if and only if | `\iff` | $\iff$ |
-| equivalence | `\Leftrightarrow` | $\Leftrightarrow$ |
 | a divides b | `a \mid b` | $a \mid b$ |
 | a does not divide b | `a \nmid b` | $a \nmid b$ |
 
