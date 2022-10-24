@@ -1,0 +1,19 @@
+\documentclass[12pt]{article}
+\usepackage{tikz}
+\pagestyle{empty}
+\begin{document}
+\definecolor{xdxdff}{rgb}{0.49,0.49,1}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\begin{tikzpicture} [every node/.style={circle, draw=black}]
+
+\node{1}
+	child{ node{2}
+		child{node{4}}
+		child{node{5}}
+		child{node{6}}
+	}
+	child{node{3}}
+;
+\end{tikzpicture}
+\end{document}
