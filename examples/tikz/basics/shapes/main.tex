@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}
+\usepackage{tikz}
+\pagestyle{empty}
+
+
+\begin{document}
+\begin{tikzpicture}
+
+% rectangle
+\draw (0,0) -- (10,0) -- (10,10) -- (0,10) -- (0, 0);
+
+% rectangle
+\draw (0,0) rectangle (10,10);
+
+% parabola
+\draw[dashed] (0,0) parabola (10,10);
+
+% circle
+\draw[green] (5,5) circle (7.1);
+
+% ellipse
+\draw[blue] (5,5) ellipse (1 and 7.1);
+
+\end{tikzpicture}
+\end{document}
