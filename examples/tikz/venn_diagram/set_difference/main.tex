@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\begin{document}
+\begin{tikzpicture}[thick,scale=1, every node/.style={scale=2}]
+
+% draw the space
+\filldraw[fill=white] (-5,-5) rectangle (8,5);
+
+% the circles
+\draw[fill=red]  (0,0) circle (3);
+\draw[fill=white] (3,0) circle (3);
+
+\node[draw] at (-3,4) {$A \setminus B$};
+
+\end{tikzpicture}
+\end{document}
