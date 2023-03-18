@@ -9,18 +9,33 @@ def markdown_to_latex_section(section):
         elif line.startswith("#"):
             result += r"\huge\textbf{" + line[2:].strip() + "}\n"
         elif line.startswith("-") or line.startswith("*") or re.match(r"^\d+\.", line):
-            result += r"\begin{itemize}" + "\n"
-            result += r"\item " + line[2:].strip() + "\n"
-            result += r"\end{itemize}" + "\n"
+            # Preserve the original indentation
+            indentation = re.match(r"^(\s*)", line).group(1)
+            result += indentation + r"\begin{itemize}" + "\n"
+            result += (
+                indentation + r"\item " + line.lstrip(" -*0123456789.").strip() + "\n"
+            )
+            result += indentation + r"\end{itemize}" + "\n"
         else:
-            result += line.strip() + "\n"
+            result += line
     return result
 
 
 def replace_underscores(strings):
+    def replace_underscore_in_string(string):
+        return string.replace("_", r"\textunderscore ")
+
+    code_block_delimiter = "```"
+    inside_code_block = False
     result = []
     for string in strings:
-        result.append(string.replace("_", r"\textunderscore "))
+        if code_block_delimiter in string:
+            inside_code_block = not inside_code_block
+            result.append(string)
+        elif not inside_code_block:
+            result.append(replace_underscore_in_string(string))
+        else:
+            result.append(string)
     return result
 
 
@@ -117,7 +132,10 @@ def convert_images(strings):
 
 def markdown_to_latex(input_file, output_file):
     with open(input_file, "r") as f:
-        lines = f.readlines()
+        content = f.read()
+        lines = content.splitlines(
+            True
+        )  # Use splitlines with the parameter True to preserve line breaks
 
     lines = replace_underscores(lines)
     lines = replace_code_blocks(lines)
