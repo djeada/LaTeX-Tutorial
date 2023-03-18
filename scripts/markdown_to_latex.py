@@ -1,21 +1,44 @@
 import re
 
 
+def process_headings(line):
+    if line.startswith("##"):
+        return r"\Large\textbf{" + line[3:].strip() + "}\n"
+    elif line.startswith("#"):
+        return r"\huge\textbf{" + line[2:].strip() + "}\n"
+    else:
+        return None
+
+
+def process_itemized_list(line):
+    if line.startswith("-") or line.startswith("*") or re.match(r"^\d+\.", line):
+        indentation = re.match(r"^(\s*)", line).group(1)
+        return (
+            indentation
+            + r"\begin{itemize}"
+            + "\n"
+            + indentation
+            + r"\item "
+            + line.lstrip(" -*0123456789.").strip()
+            + "\n"
+            + indentation
+            + r"\end{itemize}"
+            + "\n"
+        )
+    else:
+        return None
+
+
 def markdown_to_latex_section(section):
     result = ""
     for line in section:
-        if line.startswith("##"):
-            result += r"\Large\textbf{" + line[3:].strip() + "}\n"
-        elif line.startswith("#"):
-            result += r"\huge\textbf{" + line[2:].strip() + "}\n"
-        elif line.startswith("-") or line.startswith("*") or re.match(r"^\d+\.", line):
-            # Preserve the original indentation
-            indentation = re.match(r"^(\s*)", line).group(1)
-            result += indentation + r"\begin{itemize}" + "\n"
-            result += (
-                indentation + r"\item " + line.lstrip(" -*0123456789.").strip() + "\n"
-            )
-            result += indentation + r"\end{itemize}" + "\n"
+        heading = process_headings(line)
+        itemized_list = process_itemized_list(line)
+
+        if heading:
+            result += heading
+        elif itemized_list:
+            result += itemized_list
         else:
             result += line
     return result
@@ -46,12 +69,6 @@ class Pair:
 
 
 def replace_pairs(str, pair_substring, prefix, suffix):
-    """
-    Replace all occurrences of pair_substring with prefix and suffix.
-    First occurrence of pair_substring is replaced with prefix, second
-    occurrence is replaced with suffix.
-    """
-
     pairs = []
     pair = None
     for i in range(len(str)):
@@ -69,7 +86,6 @@ def replace_pairs(str, pair_substring, prefix, suffix):
     result = ""
     i = 0
     for pair in pairs:
-        # replace with prefix and suffix
         result += (
             str[i : pair.first]
             + prefix
@@ -105,26 +121,18 @@ def replace_inline_code_snipets(strings):
 
 def convert_images(strings):
     string = to_string(strings)
-    # Regular expression to search for Markdown links with captions
     pattern = r"!\[(.*)\]\((.*)\)"
-
-    # Search for links in the input string
     matches = re.findall(pattern, string)
 
-    # Loop through the matches and convert each one to LaTeX
     for match in matches:
-        # Get the filename from the URL
         filename = match[1].split("/")[-1]
 
-        # Construct the LaTeX code
         latex = r"\write18{wget " + match[1] + "}\n"
         latex += r"\begin{figure}[h!]"
         latex += r"\centering"
         latex += r"\includegraphics[width=1\textwidth]{" + filename + "}"
         latex += r"\caption{" + match[0] + "}"
         latex += r"\end{figure}"
-
-        # Replace the Markdown link with the LaTeX code
         string = string.replace("![" + match[0] + "](" + match[1] + ")", latex)
 
     return to_list(string)
@@ -133,15 +141,13 @@ def convert_images(strings):
 def markdown_to_latex(input_file, output_file):
     with open(input_file, "r") as f:
         content = f.read()
-        lines = content.splitlines(
-            True
-        )  # Use splitlines with the parameter True to preserve line breaks
+        lines = content.splitlines(True)
 
     lines = replace_underscores(lines)
     lines = replace_code_blocks(lines)
     lines = replace_inline_code_snipets(lines)
     lines = convert_images(lines)
-    # Create a list to store the sections
+
     sections = []
     section = []
     for line in lines:
