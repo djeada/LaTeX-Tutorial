@@ -2,6 +2,8 @@
 
 Welcome to our repository of LaTeX tutorial notes and resources! LaTeX is a powerful typesetting system that is widely used for creating professional-quality documents, particularly in the fields of science, technology, and mathematics. In this repository, you will find notes and resources to help you learn about and master LaTeX, from the basics of the LaTeX language and syntax to advanced topics such as creating custom documents and packages.
 
+![latex_tutorial](https://github.com/user-attachments/assets/c6b4fef4-d74d-47e9-b354-b7142a65a621)
+
 ## What is LaTeX?
 
 LaTeX is a typesetting system that was created by Donald Knuth of Stanford University in 1978. It is designed to produce documents that are clear, easy to read, and professional in appearance, such as books, articles, and even presentations. LaTeX allows you to focus on the content of your document, rather than its appearance, by separating the content from the formatting. This allows you to concentrate on the structure and content of your document, while LaTeX handles the rest to ensure a polished final result.
