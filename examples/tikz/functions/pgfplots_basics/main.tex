@@ -22,10 +22,10 @@
     width=12cm, height=7cm,
 ]
     \addplot[blue, thick, smooth, domain=-2*pi:2*pi, samples=100] {sin(deg(x))};
-    \addlegend{$\sin(x)$}
+    \addlegendentry{$\sin(x)$}
 
     \addplot[red, thick, dashed, smooth, domain=-2*pi:2*pi, samples=100] {cos(deg(x))};
-    \addlegend{$\cos(x)$}
+    \addlegendentry{$\cos(x)$}
 \end{axis}
 \end{tikzpicture}
 
@@ -66,8 +66,8 @@
         (6,7) (7,8.5) (8,9) (9,10.2) (10,11)
     };
     \addplot[red, domain=0:11, thick, no marks] {1.05*x + 0.8};
-    \addlegend{Data points}
-    \addlegend{Linear fit}
+    \addlegendentry{Data points}
+    \addlegendentry{Linear fit}
 \end{axis}
 \end{tikzpicture}
 
