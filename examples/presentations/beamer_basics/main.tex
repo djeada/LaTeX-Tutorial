@@ -1,0 +1,103 @@
+% Beamer Presentation Basics
+% Demonstrates: slides, title page, bullet points, columns, and blocks.
+% Compile with: pdflatex main.tex
+
+\documentclass[aspectratio=169]{beamer}
+
+% --- Theme and colors ---
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% --- Metadata ---
+\title{Introduction to Beamer}
+\subtitle{Creating Presentations with \LaTeX{}}
+\author{Your Name}
+\institute{Your University}
+\date{\today}
+
+\begin{document}
+
+% --- Title slide ---
+\begin{frame}
+\titlepage
+\end{frame}
+
+% --- Table of contents ---
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+% --- Section 1 ---
+\section{Getting Started}
+
+\begin{frame}{What is Beamer?}
+\begin{itemize}
+    \item Beamer is a \LaTeX{} document class for creating presentations
+    \item Produces PDF slides with professional formatting
+    \item Supports themes, animations, and overlays
+    \item Used extensively in academia and research
+\end{itemize}
+\end{frame}
+
+% --- Section 2: Columns and blocks ---
+\section{Layout Features}
+
+\begin{frame}{Two-Column Layout}
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \textbf{Left Column}
+        \begin{itemize}
+            \item Use \texttt{columns} environment
+            \item Specify width as fraction of \texttt{\textbackslash textwidth}
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \textbf{Right Column}
+        \begin{enumerate}
+            \item Numbered lists work too
+            \item Combine with other environments
+        \end{enumerate}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Blocks}
+\begin{block}{Standard Block}
+    This is a standard block with a blue header.
+\end{block}
+
+\begin{alertblock}{Alert Block}
+    This is an alert block --- use it for warnings or key points.
+\end{alertblock}
+
+\begin{exampleblock}{Example Block}
+    This is an example block --- use it for examples or code.
+\end{exampleblock}
+\end{frame}
+
+% --- Section 3: Math ---
+\section{Mathematics}
+
+\begin{frame}{Equations in Slides}
+Beamer supports all standard \LaTeX{} math:
+
+\begin{equation}
+    e^{i\pi} + 1 = 0
+\end{equation}
+
+The quadratic formula:
+\begin{equation}
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{equation}
+\end{frame}
+
+% --- Final slide ---
+\begin{frame}{}
+\centering
+\Huge Thank you!
+
+\vspace{1cm}
+\normalsize Questions?
+\end{frame}
+
+\end{document}

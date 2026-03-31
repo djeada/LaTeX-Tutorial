@@ -1,3 +1,7 @@
+% Venn Diagram: Intersection (A ∩ B)
+% Demonstrates: scope/clip technique to fill only the overlapping region.
+% Compile with: pdflatex main.tex
+
 \documentclass{article}
 \usepackage{tikz}
 \usetikzlibrary{calc}
@@ -5,19 +9,20 @@
 \begin{document}
 \begin{tikzpicture}[thick,scale=1, every node/.style={scale=2}]
 
-% draw the space
+% --- Bounding box ---
 \filldraw[fill=white] (-5,-5) rectangle (8,5);
 
-% the circles
+% --- Circle outlines ---
 \draw (0,0) circle (3);
 \draw (3,0) circle (3);
 
-% A \cap B
+% --- Intersection: clip to circle A, then fill circle B ---
 \scope 
 \clip (0,0) circle (3);
 \fill[red] (3,0) circle (3);
 \endscope
 
+% --- Label ---
 \node[draw] at (-3,4) {$A \cap B$};
 
 \end{tikzpicture}

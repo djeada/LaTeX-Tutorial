@@ -1,36 +1,49 @@
-\documentclass[12pt]{article}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage[latin1]{inputenc}
+% Example Document
+% Demonstrates: document structure, packages, figures, lists, and equations.
+% Compile with: pdflatex document.tex
 
+\documentclass[12pt]{article}
+
+% --- Packages ---
+\usepackage{amsmath}       % Advanced math environments
+\usepackage{graphicx}      % Image inclusion
+\usepackage{hyperref}      % Clickable links and references
+\usepackage[utf8]{inputenc} % UTF-8 encoding (modern default)
+
+% --- Document metadata ---
 \title{Example Document}
 \author{Adam Djellouli}
-\date{08/12/22}
+\date{\today}
 
 \begin{document}
 \maketitle
 
-It is a simple \LaTeX{} example. The following is a figure:
+This is a simple \LaTeX{} example demonstrating common features.
 
+% --- Figure environment ---
+% Note: Replace 'example-image' with your own image file (e.g., photo.png).
+% The 'example-image' placeholder is built into the graphicx package for testing.
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=0.5\textwidth]{https://en.wikipedia.org/wiki/Dinosaur#/media/File:Macronaria_scrubbed_enh.jpg}
-	\caption{Example image.}
+	\includegraphics[width=0.5\textwidth]{example-image}
+	\caption{A placeholder figure. Replace \texttt{example-image} with your own file.}
 \end{figure}
 
+% --- Itemized list ---
 Let's list some items:
 
 \begin{itemize}
 	\item First of all we have this.
 	\item Then we have that.
-	\item We can also include images:
+	\item We can also include images inline:
 	      \newline
 	      \hspace*{3em}
-	      \includegraphics[width=0.3\textwidth]{https://en.wikipedia.org/wiki/Apple#/media/File:95apple.jpeg}
+	      \includegraphics[width=0.3\textwidth]{example-image-a}
 	\item Or even Schr\"odinger's equation:
 	      \begin{equation}
-	      	i\hbar\frac{\partial}{\partial t}\psi(x,t) = \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x)\right]\psi(x,t)
+	      	i\hbar\frac{\partial}{\partial t}\psi(x,t)
+	      	= \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}
+	      	+ V(x)\right]\psi(x,t)
 	      \end{equation}
 \end{itemize}
 

@@ -1,3 +1,7 @@
+% Venn Diagram: Set Difference (A \ B)
+% Demonstrates: fill order technique — fill A red, then overlay B white.
+% Compile with: pdflatex main.tex
+
 \documentclass{article}
 \usepackage{tikz}
 \usetikzlibrary{calc}
@@ -5,13 +9,14 @@
 \begin{document}
 \begin{tikzpicture}[thick,scale=1, every node/.style={scale=2}]
 
-% draw the space
+% --- Bounding box ---
 \filldraw[fill=white] (-5,-5) rectangle (8,5);
 
-% the circles
+% --- Fill A red, then B white to leave only A \ B colored ---
 \draw[fill=red]  (0,0) circle (3);
 \draw[fill=white] (3,0) circle (3);
 
+% --- Label ---
 \node[draw] at (-3,4) {$A \setminus B$};
 
 \end{tikzpicture}

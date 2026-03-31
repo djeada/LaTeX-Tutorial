@@ -1,3 +1,7 @@
+% Red-Black Tree
+% Demonstrates: custom node styles, colored tree nodes, and arrow-based trees.
+% Compile with: pdflatex main.tex
+
 \documentclass[12pt]{article}
 \usepackage{tikz}
 \usepackage[utf8]{inputenc}
@@ -5,20 +9,23 @@
 
 \usetikzlibrary{arrows}
 
+% --- Custom node styles for Red-Black Tree ---
 \tikzset{
   treeNode/.style = {align=center, inner sep=5pt, text centered},
-  %black node
+  % Black node: white text on black background
   nodeBlack/.style = {treeNode, circle, white, draw=black,
     fill=black, minimum width=25},
-  %red node  
+  % Red node: red text with red border
   nodeRed/.style = {treeNode, circle, red, draw=red, minimum width=25},
-  %nil node  
+  % NIL node: empty sentinel node
   nodeNil/.style = {treeNode, circle, draw=black, minimum width=25}
 }
 
 \begin{document}
 \begin{tikzpicture}[->,>=stealth',level/.style={sibling distance = 8cm/#1,
   level distance = 1.5cm}] 
+
+% --- Tree structure: root is black, alternating red/black children ---
 \node [nodeBlack] {20}
     child{ node [nodeRed] {7} 
             child{ node [nodeBlack] {5} 

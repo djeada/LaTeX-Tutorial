@@ -1,0 +1,130 @@
+% Tables and Tabular Environments
+% Demonstrates: booktabs, multicolumn, multirow, colored rows, captions, and labels.
+% Compile with: pdflatex main.tex
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}      % Professional-quality horizontal rules
+\usepackage{multirow}      % Cells spanning multiple rows
+\usepackage{xcolor}        % Row and cell coloring
+\usepackage{colortbl}      % Color support inside tabular
+\usepackage{caption}       % Better caption formatting
+\usepackage{array}         % Extended column types
+
+\title{Tables and Tabular Environments}
+\author{LaTeX Tutorial}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% =============================================================================
+% 1. Basic table with booktabs
+% =============================================================================
+\section{Basic Table with Booktabs}
+
+The \texttt{booktabs} package provides \verb|\toprule|, \verb|\midrule|,
+and \verb|\bottomrule| for clean, professional tables.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrr}
+    \toprule
+    \textbf{Element} & \textbf{Symbol} & \textbf{Atomic \#} \\
+    \midrule
+    Hydrogen  & H  & 1  \\
+    Helium    & He & 2  \\
+    Lithium   & Li & 3  \\
+    Carbon    & C  & 6  \\
+    Nitrogen  & N  & 7  \\
+    Oxygen    & O  & 8  \\
+    \bottomrule
+\end{tabular}
+\caption{Selected elements from the periodic table.}
+\label{tab:elements}
+\end{table}
+
+% =============================================================================
+% 2. Multicolumn and multirow
+% =============================================================================
+\section{Multicolumn and Multirow}
+
+Use \verb|\multicolumn{n}{align}{text}| to span columns
+and \verb|\multirow{n}{width}{text}| to span rows.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{llcc}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Student Info}} & \textbf{Math} & \textbf{Science} \\
+    \cmidrule(lr){1-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4}
+    \textbf{Name} & \textbf{ID} & & \\
+    \midrule
+    \multirow{2}{*}{Alice}  & 001 & 95 & 88 \\
+                             & 002 & 78 & 92 \\
+    \midrule
+    \multirow{2}{*}{Bob}    & 003 & 82 & 75 \\
+                             & 004 & 90 & 85 \\
+    \bottomrule
+\end{tabular}
+\caption{Grades with merged name cells.}
+\label{tab:grades}
+\end{table}
+
+% =============================================================================
+% 3. Colored rows
+% =============================================================================
+\section{Colored Rows}
+
+Alternating row colors improve readability in large tables.
+
+\begin{table}[ht]
+\centering
+\rowcolors{2}{gray!15}{white}  % alternate starting from row 2
+\begin{tabular}{lll}
+    \toprule
+    \textbf{Day} & \textbf{High (\textdegree C)} & \textbf{Low (\textdegree C)} \\
+    \midrule
+    Monday    & 22 & 14 \\
+    Tuesday   & 25 & 16 \\
+    Wednesday & 19 & 12 \\
+    Thursday  & 21 & 13 \\
+    Friday    & 27 & 18 \\
+    Saturday  & 30 & 20 \\
+    Sunday    & 28 & 19 \\
+    \bottomrule
+\end{tabular}
+\caption{Weekly temperature forecast.}
+\label{tab:weather}
+\end{table}
+
+% =============================================================================
+% 4. Custom column types
+% =============================================================================
+\section{Custom Column Types}
+
+The \texttt{array} package lets you define reusable column types.
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{L{4cm} C{3cm} R{3cm}}
+    \toprule
+    \textbf{Description} & \textbf{Quantity} & \textbf{Price (\$)} \\
+    \midrule
+    Widget (standard model, blue)  & 150  & 4.99  \\
+    Gadget (premium, with case)    & 75   & 12.50 \\
+    Thingamajig (bulk pack of 10)  & 200  & 1.25  \\
+    \bottomrule
+\end{tabular}
+\caption{Inventory with fixed-width columns.}
+\label{tab:inventory}
+\end{table}
+
+See Table~\ref{tab:elements} for elements, Table~\ref{tab:grades} for grades,
+Table~\ref{tab:weather} for weather, and Table~\ref{tab:inventory} for inventory.
+
+\end{document}

@@ -1,0 +1,153 @@
+% Document Structure — Report Class
+% Demonstrates: chapters, sections, TOC, cross-references, footnotes, appendices.
+% Compile with: pdflatex main.tex && pdflatex main.tex  (run twice for TOC/refs)
+
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}      % Clickable links in TOC and references
+\usepackage{amsmath}
+
+% --- Page geometry ---
+\usepackage[margin=2.5cm]{geometry}
+
+\title{A Structured \LaTeX{} Document}
+\author{LaTeX Tutorial}
+\date{\today}
+
+\begin{document}
+
+% =============================================================================
+% Front matter
+% =============================================================================
+\maketitle
+
+\begin{abstract}
+This document demonstrates the \texttt{report} class with chapters, sections,
+a table of contents, cross-references, footnotes, and appendices. Compile
+twice to resolve all references.
+\end{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+% =============================================================================
+% Chapter 1
+% =============================================================================
+\chapter{Introduction}
+\label{chap:intro}
+
+This is the first chapter. The \texttt{report} class supports
+\verb|\chapter|, which \texttt{article} does not.
+
+\section{Motivation}
+\label{sec:motivation}
+
+LaTeX is the standard for academic writing\footnote{Especially in mathematics,
+physics, and computer science.}. See Chapter~\ref{chap:methods} for our
+methodology.
+
+\section{Scope}
+\label{sec:scope}
+
+We cover basic document structuring features. For advanced mathematics, see the
+\texttt{math\_advanced} example in this repository.
+
+% =============================================================================
+% Chapter 2
+% =============================================================================
+\chapter{Methods}
+\label{chap:methods}
+
+\section{Data Collection}
+\label{sec:data}
+
+Data was collected as described in Section~\ref{sec:motivation}.
+
+\subsection{Instruments}
+\label{sec:instruments}
+
+We used the following instruments:
+\begin{enumerate}
+    \item Thermometer (accuracy $\pm 0.1^\circ$C)
+    \item Scale (accuracy $\pm 0.01$\,g)
+    \item Stopwatch (accuracy $\pm 0.001$\,s)
+\end{enumerate}
+
+\subsection{Procedure}
+\label{sec:procedure}
+
+The procedure followed three steps\footnote{Each step was repeated three times
+for statistical significance.}:
+
+\begin{enumerate}
+    \item Calibrate instruments (see Section~\ref{sec:instruments}).
+    \item Record measurements in Table~\ref{tab:results}.
+    \item Analyze using Equation~\eqref{eq:mean}.
+\end{enumerate}
+
+\section{Analysis}
+\label{sec:analysis}
+
+The mean is computed as:
+\begin{equation}
+    \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+    \label{eq:mean}
+\end{equation}
+
+The standard deviation is:
+\begin{equation}
+    s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}
+    \label{eq:stddev}
+\end{equation}
+
+% =============================================================================
+% Chapter 3
+% =============================================================================
+\chapter{Results}
+\label{chap:results}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{ccc}
+    \hline
+    \textbf{Trial} & \textbf{Value} & \textbf{Error} \\
+    \hline
+    1 & 9.81 & 0.02 \\
+    2 & 9.79 & 0.03 \\
+    3 & 9.82 & 0.01 \\
+    \hline
+\end{tabular}
+\caption{Experimental results.}
+\label{tab:results}
+\end{table}
+
+From Table~\ref{tab:results} and Equation~\eqref{eq:mean}:
+$\bar{x} = 9.807$\,m/s\textsuperscript{2}, consistent with the accepted
+value\footnote{The accepted value of $g$ at sea level is approximately
+$9.81$\,m/s\textsuperscript{2}.}.
+
+% =============================================================================
+% Appendices
+% =============================================================================
+\appendix
+
+\chapter{Derivations}
+\label{app:derivations}
+
+Full derivation of Equation~\eqref{eq:stddev} starts from the definition
+of variance:
+
+\begin{equation}
+    \sigma^2 = \mathbb{E}[(X - \mu)^2]
+\end{equation}
+
+\chapter{Raw Data}
+\label{app:data}
+
+Additional raw data can be placed here, referenced from
+Chapter~\ref{chap:results}.
+
+\end{document}

@@ -1,0 +1,134 @@
+% Transistor Circuits
+% Demonstrates: BJT common-emitter amplifier and MOSFET switch with CircuiTikz.
+% Compile with: pdflatex main.tex
+
+\documentclass[border=10pt]{standalone}
+\usepackage[american]{circuitikz}
+\usepackage{siunitx}
+
+\begin{document}
+\begin{circuitikz}[scale=0.9, transform shape]
+
+% =============================================================================
+% Circuit 1: NPN Common-Emitter Amplifier
+% =============================================================================
+\begin{scope}[shift={(0, 0)}]
+    \node[font=\bfseries\large] at (3, 8.5) {Common-Emitter Amplifier};
+
+    % Supply
+    \draw (3, 8) node[above] {$V_{CC}$} to[short] (3, 7.5);
+
+    % Collector resistor
+    \draw (3, 7.5) to[R, l=$R_C$] (3, 5.5);
+
+    % BJT
+    \node[npn] (Q) at (3, 4) {};
+
+    % Connections
+    \draw (Q.collector) -- (3, 5.5);
+
+    % Emitter resistor
+    \draw (Q.emitter) to[R, l=$R_E$] (3, 1);
+    % Bypass capacitor
+    \draw (3, 2.5) to[short, *-] (5, 2.5)
+        to[C, l=$C_E$] (5, 1) -- (3, 1);
+    \draw (3, 1) node[ground] {};
+
+    % Base bias network
+    \draw (1, 8) node[above] {$V_{CC}$}
+        to[R, l=$R_1$] (1, 5)
+        to[R, l=$R_2$] (1, 1) node[ground] {};
+    \draw (1, 5) to[short, *-] (Q.base);
+
+    % Input coupling capacitor
+    \draw (-2, 5) node[left] {$V_{\text{in}}$}
+        to[C, l=$C_{\text{in}}$] (1, 5);
+
+    % Output coupling capacitor
+    \draw (3, 5.5) to[short, *-] (5.5, 5.5)
+        to[C, l=$C_{\text{out}}$] (7, 5.5)
+        node[right] {$V_{\text{out}}$};
+
+    % Annotations
+    \node[font=\small, text=gray, right] at (3.3, 4) {$Q_1$};
+    \node[font=\scriptsize, text=blue, align=left] at (7, 3) {%
+        $A_v \approx -\dfrac{R_C}{R_E}$\\[4pt]
+        (with $C_E$: $A_v \approx -g_m R_C$)
+    };
+\end{scope}
+
+% =============================================================================
+% Circuit 2: NMOS Switch
+% =============================================================================
+\begin{scope}[shift={(12, 0)}]
+    \node[font=\bfseries\large] at (3, 8.5) {NMOS Switch};
+
+    % Supply
+    \draw (3, 8) node[above] {$V_{DD}$}
+        to[R, l=$R_D$] (3, 5.5);
+
+    % MOSFET
+    \node[nmos] (M) at (3, 4) {};
+    \node[font=\small, text=gray, right] at (3.4, 4) {$M_1$};
+
+    % Connections
+    \draw (M.drain) -- (3, 5.5);
+    \draw (M.source) -- (3, 2) node[ground] {};
+
+    % Gate input
+    \draw (M.gate) -- ++(-1.5, 0) node[left] {$V_{\text{in}}$};
+
+    % Output
+    \draw (3, 5.5) to[short, *-] (5.5, 5.5) node[right] {$V_{\text{out}}$};
+
+    % LED example load (optional visual)
+    \draw[dashed, gray] (5.5, 5.5) -- (7, 5.5)
+        to[led, l=LED] (7, 2) node[ground] {};
+
+    % Truth-table-style annotation
+    \node[font=\small, align=left, anchor=north west] at (0, 1.5) {%
+        \textbf{Operation:}\\
+        $V_{\text{in}} = 0$: $M_1$ OFF $\to V_{\text{out}} = V_{DD}$\\
+        $V_{\text{in}} = V_{DD}$: $M_1$ ON $\to V_{\text{out}} \approx 0$
+    };
+\end{scope}
+
+% =============================================================================
+% Circuit 3: CMOS Inverter
+% =============================================================================
+\begin{scope}[shift={(24, 0)}]
+    \node[font=\bfseries\large] at (2, 8.5) {CMOS Inverter};
+
+    % Supply
+    \draw (2, 8) node[above] {$V_{DD}$} -- (2, 7);
+
+    % PMOS
+    \node[pmos, anchor=drain] (P) at (2, 6) {};
+    \draw (2, 7) -- (P.source);
+    \node[font=\small, text=gray, right] at (2.4, 6) {$M_P$};
+
+    % NMOS
+    \node[nmos, anchor=drain] (N) at (2, 3.5) {};
+    \draw (P.drain) -- (N.drain);
+    \draw (N.source) -- (2, 1.5) node[ground] {};
+    \node[font=\small, text=gray, right] at (2.4, 3.5) {$M_N$};
+
+    % Shared gate input
+    \draw (P.gate) -- ++(-0.5, 0) coordinate (gin) |- (N.gate);
+    \draw (gin) -- ++(-1, 0) node[left] {$V_{\text{in}}$};
+    \filldraw (gin) circle (1.5pt);
+
+    % Output
+    \coordinate (out) at ($(P.drain)!0.5!(N.drain)$);
+    \draw (out) to[short, *-] ++(2, 0) node[right] {$V_{\text{out}}$};
+
+    % Annotation
+    \node[font=\small, align=left, anchor=north west] at (-0.5, 1) {%
+        \textbf{CMOS:}\\
+        Low input $\to$ PMOS on, NMOS off $\to$ High output\\
+        High input $\to$ NMOS on, PMOS off $\to$ Low output
+    };
+\end{scope}
+
+\end{circuitikz}
+\end{document}

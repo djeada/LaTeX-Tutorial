@@ -1,0 +1,150 @@
+% Code Listings
+% Demonstrates: listings package for syntax-highlighted code in multiple languages.
+% Compile with: pdflatex main.tex
+% Note: For minted (Pygments-based), compile with: pdflatex -shell-escape main.tex
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+
+% =============================================================================
+% Listings configuration
+% =============================================================================
+
+% --- Define a color scheme ---
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codegreen}{RGB}{0,128,0}
+\definecolor{codegray}{RGB}{128,128,128}
+\definecolor{codepurple}{RGB}{128,0,128}
+\definecolor{codeblue}{RGB}{0,0,180}
+
+% --- Default style applied to all listings ---
+\lstset{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    captionpos=b,
+    commentstyle=\color{codegreen}\itshape,
+    frame=single,
+    keywordstyle=\color{codeblue}\bfseries,
+    numbers=left,
+    numberstyle=\tiny\color{codegray},
+    numbersep=8pt,
+    showstringspaces=false,
+    stringstyle=\color{codepurple},
+    tabsize=4,
+    xleftmargin=1.5em,
+    framexleftmargin=1em,
+}
+
+\title{Code Listings in \LaTeX{}}
+\author{LaTeX Tutorial}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% =============================================================================
+\section{Python}
+% =============================================================================
+
+\begin{lstlisting}[language=Python, caption={Fibonacci with memoization}]
+def fibonacci(n, memo={}):
+    """Return the n-th Fibonacci number."""
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    memo[n] = fibonacci(n - 1) + fibonacci(n - 2)
+    return memo[n]
+
+for i in range(10):
+    print(f"F({i}) = {fibonacci(i)}")
+\end{lstlisting}
+
+% =============================================================================
+\section{C}
+% =============================================================================
+
+\begin{lstlisting}[language=C, caption={Hello World in C}]
+#include <stdio.h>
+
+int main(void) {
+    printf("Hello, World!\n");
+    return 0;
+}
+\end{lstlisting}
+
+% =============================================================================
+\section{Java}
+% =============================================================================
+
+\begin{lstlisting}[language=Java, caption={A simple generic stack}]
+import java.util.ArrayList;
+
+public class Stack<T> {
+    private final ArrayList<T> items = new ArrayList<>();
+
+    public void push(T item) {
+        items.add(item);
+    }
+
+    public T pop() {
+        if (items.isEmpty()) {
+            throw new RuntimeException("Stack is empty");
+        }
+        return items.remove(items.size() - 1);
+    }
+
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+}
+\end{lstlisting}
+
+% =============================================================================
+\section{Inline Code}
+% =============================================================================
+
+Use \lstinline|int x = 42;| for inline code, or
+\lstinline[language=Python]|print("hello")| with a language override.
+
+% =============================================================================
+\section{Custom Language Definition}
+% =============================================================================
+
+You can define your own language for DSLs or config files:
+
+\lstdefinelanguage{TOML}{
+    comment=[l]{\#},
+    morestring=[b]",
+    morekeywords={true, false},
+}
+
+\begin{lstlisting}[language=TOML, caption={Example TOML configuration}]
+# Application settings
+[server]
+host = "0.0.0.0"
+port = 8080
+debug = false
+
+[database]
+url = "postgres://localhost/mydb"
+pool_size = 5
+\end{lstlisting}
+
+% =============================================================================
+\section{Loading from External File}
+% =============================================================================
+
+To include code from an external file, use:
+\begin{verbatim}
+\lstinputlisting[language=Python, caption={My script}]{script.py}
+\end{verbatim}
+
+This keeps your \LaTeX{} source clean and your code in separate files.
+
+\end{document}

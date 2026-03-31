@@ -1,28 +1,32 @@
+% Trigonometric (Unit) Circle
+% Demonstrates: grid, axes, unit circle, sin/cos triangle, and angle arcs.
+% Compile with: pdflatex main.tex
+
 \documentclass{article}
 \usepackage{tikz}
 \begin{document}
 \begin{tikzpicture}[thick,scale=1, every node/.style={scale=2}]
 
-%frid
+% --- Background grid ---
 \draw[lightgray, thin] (-5,-5) grid (5,5);
 
-% axes
+% --- Axes ---
 \draw[->, very thick] (-5,0) -- (5,0);
 \draw[->, very thick] (0,-5) -- (0,5);
 
-% circle
+% --- Unit circle ---
 \draw (0,0) circle[radius=4];
 
-% triangle
+% --- Right triangle for 60-degree angle ---
 \draw(0,0) -- (60:4);
 \draw[blue] (0,0) -- (2,0);
 \draw[red] (2,0) -- (2,4*sin{60});
 
-% lables
+% --- Labeled sides: cos and sin ---
 \draw[blue] (0,0) -- node[below] {$\cos(60^\circ)$} (2,0);
 \draw[red] (2,0) -- node[right] {$\sin(60^\circ)$} (2,4*sin{60});
 
-% angle
+% --- Filled angle arc ---
 \filldraw[fill=orange] (1,0) arc[radius=1, start angle=0, end angle=60] -- (0,0) -- cycle;
 
 \end{tikzpicture}

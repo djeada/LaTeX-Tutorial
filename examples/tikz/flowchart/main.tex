@@ -1,0 +1,63 @@
+% Flowchart
+% Demonstrates: TikZ shapes for decision/process/IO, arrow routing, and layout.
+% Compile with: pdflatex main.tex
+
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+\begin{document}
+
+% --- Define styles ---
+\tikzset{
+    startstop/.style = {
+        rectangle, rounded corners=8pt,
+        minimum width=3cm, minimum height=1cm,
+        text centered, draw=black, fill=red!20,
+        font=\bfseries
+    },
+    process/.style = {
+        rectangle,
+        minimum width=3.5cm, minimum height=1cm,
+        text centered, draw=black, fill=blue!15,
+    },
+    decision/.style = {
+        diamond, aspect=2,
+        minimum width=3cm, minimum height=1cm,
+        text centered, draw=black, fill=green!15,
+        inner sep=1pt,
+    },
+    io/.style = {
+        trapezium, trapezium left angle=70, trapezium right angle=110,
+        minimum width=3cm, minimum height=1cm,
+        text centered, draw=black, fill=orange!15,
+    },
+    arrow/.style = {
+        thick, -{Stealth[length=6pt]},
+    },
+}
+
+\begin{tikzpicture}[node distance=1.5cm]
+
+% --- Nodes ---
+\node (start)    [startstop]                      {Start};
+\node (input)    [io, below=of start]             {Input $n$};
+\node (init)     [process, below=of input]        {$i \gets 2$};
+\node (check)    [decision, below=of init]        {$i \le \sqrt{n}$?};
+\node (divtest)  [decision, below=of check]       {$n \bmod i = 0$?};
+\node (incr)     [process, right=3cm of divtest]  {$i \gets i + 1$};
+\node (notprime) [startstop, below=of divtest]    {Not Prime};
+\node (prime)    [startstop, left=3cm of divtest]  {Prime};
+
+% --- Arrows ---
+\draw[arrow] (start)   -- (input);
+\draw[arrow] (input)   -- (init);
+\draw[arrow] (init)    -- (check);
+\draw[arrow] (check)   -- node[right] {Yes} (divtest);
+\draw[arrow] (check.west)  -- node[above] {No} ++(-2.5,0) |- (prime);
+\draw[arrow] (divtest) -- node[right] {Yes} (notprime);
+\draw[arrow] (divtest) -- node[above] {No}  (incr);
+\draw[arrow] (incr.north)  |- (check.east);
+
+\end{tikzpicture}
+\end{document}

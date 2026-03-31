@@ -1,3 +1,7 @@
+% Basic Shapes in TikZ
+% Demonstrates: rectangles, parabolas, circles, and ellipses with styling.
+% Compile with: pdflatex main.tex
+
 \documentclass[12pt]{article}
 \usepackage{tikz}
 \pagestyle{empty}
@@ -6,19 +10,19 @@
 \begin{document}
 \begin{tikzpicture}
 
-% rectangle
+% --- Rectangle (method 1: explicit corners) ---
 \draw (0,0) -- (10,0) -- (10,10) -- (0,10) -- (0, 0);
 
-% rectangle
+% --- Rectangle (method 2: shorthand) ---
 \draw (0,0) rectangle (10,10);
 
-% parabola
+% --- Parabola with dashed style ---
 \draw[dashed] (0,0) parabola (10,10);
 
-% circle
+% --- Circle with color ---
 \draw[green] (5,5) circle (7.1);
 
-% ellipse
+% --- Ellipse with color ---
 \draw[blue] (5,5) ellipse (1 and 7.1);
 
 \end{tikzpicture}

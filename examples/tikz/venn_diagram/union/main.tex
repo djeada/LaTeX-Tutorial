@@ -1,3 +1,7 @@
+% Venn Diagram: Union (A ∪ B)
+% Demonstrates: overlapping circles with fill to show set union.
+% Compile with: pdflatex main.tex
+
 \documentclass{article}
 \usepackage{tikz}
 \usetikzlibrary{calc}
@@ -5,17 +9,18 @@
 \begin{document}
 \begin{tikzpicture}[thick,scale=1, every node/.style={scale=2}]
 
-% draw the space
+% --- Bounding box ---
 \filldraw[fill=white] (-5,-5) rectangle (8,5);
 
-% the circles
-\draw (0,0) circle (3);
-\draw (3,0) circle (3);
-
-% A \cup B
+% --- Draw and fill both circles (union = both colored) ---
 \fill[red] (0,0) circle (3);
 \fill[red] (3,0) circle (3);
 
+% --- Circle outlines ---
+\draw (0,0) circle (3);
+\draw (3,0) circle (3);
+
+% --- Label ---
 \node[draw] at (-3,4) {$A \cup B$};
 
 \end{tikzpicture}

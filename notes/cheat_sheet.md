@@ -206,7 +206,7 @@ These do not scale with the formula in between, so if you write `(\frac{\sqrt x}
 
 ### Accents and diacritical marks 
 
- Command | Result |
+| Command | Result |
 | ------- | ------ |
 | `\hat` | $\hat{x}$ |
 | `\widehat` | $\widehat{xy}$ |
@@ -221,7 +221,7 @@ These do not scale with the formula in between, so if you write `(\frac{\sqrt x}
 You cannot just add extra whitespaces to the formulas to provide more space; this will not impact the final result.
 You must use one of the following commands: 
 
- Command | Result |
+| Command | Result |
 | ------- | ------ |
 | `a \, b` | $b \\, a$ |
 | `a \; b` | $b \\; a$ |
@@ -229,20 +229,22 @@ You must use one of the following commands:
 | `a \qquad b` | $b \qquad a$ |
 
 
-## Systems of equation
+## Systems of equations
+
+Use the `align*` environment (preferred over the older `eqnarray*`):
 
 ```Latex
-\begin{eqnarray*}
-  -x + 5y &=& 12 \\
-   x - 7y &=& 35
-\end{eqnarray*} 
+\begin{align*}
+  -x + 5y &= 12 \\
+   x - 7y &= 35
+\end{align*} 
 ```
 
 $$
-\begin{eqnarray*}
-  -x + 5y &=& 12 \\
-   x - 7y &=& 35
-\end{eqnarray*} 
+\begin{align*}
+  -x + 5y &= 12 \\
+   x - 7y &= 35
+\end{align*} 
 $$
 
 ## Matrix
@@ -344,7 +346,7 @@ $$
 \right)
 $$
 
-## Augumented matrix
+## Augmented matrix
 
 ```Latex
 [A|\boldsymbol{b}] = 
@@ -420,3 +422,102 @@ Unordered lists:
 * one
 * two
 * three
+
+## TikZ Basics
+
+TikZ is a powerful package for creating graphics directly in LaTeX. Load it with `\usepackage{tikz}`.
+
+### Drawing commands
+
+| Command | Description |
+| ------- | ----------- |
+| `\draw (0,0) -- (2,3);` | Draw a line between two points |
+| `\draw (0,0) rectangle (3,2);` | Draw a rectangle |
+| `\draw (0,0) circle (1);` | Draw a circle with radius 1 |
+| `\draw (0,0) ellipse (2 and 1);` | Draw an ellipse |
+| `\draw[->] (0,0) -- (2,0);` | Draw an arrow |
+| `\draw[dashed] (0,0) -- (2,2);` | Dashed line |
+| `\draw[thick, blue] (0,0) -- (3,1);` | Styled line |
+| `\filldraw[fill=red!20] (0,0) circle (1);` | Filled shape |
+
+### Nodes
+
+| Command | Description |
+| ------- | ----------- |
+| `\node at (1,1) {text};` | Place text at coordinates |
+| `\node[circle, draw] {A};` | Node with a border |
+| `\node[above] at (0,0) {label};` | Label positioned above |
+| `\node[below right] at (0,0) {label};` | Label below-right |
+
+### Loops
+
+```Latex
+\foreach \x in {0,1,...,5} {
+    \draw (\x, 0) -- (\x, 1);
+}
+```
+
+## Cross-References and Labels
+
+LaTeX can automatically number and cross-reference sections, figures, tables, and equations.
+
+| Command | Description |
+| ------- | ----------- |
+| `\label{sec:intro}` | Attach a label to the current element |
+| `\ref{sec:intro}` | Reference the number of the labeled element |
+| `\pageref{sec:intro}` | Reference the page number |
+| `\eqref{eq:euler}` | Reference an equation (adds parentheses) |
+
+Example:
+
+```Latex
+\section{Introduction}\label{sec:intro}
+As shown in Section~\ref{sec:intro} on page~\pageref{sec:intro}...
+
+\begin{equation}\label{eq:euler}
+    e^{i\pi} + 1 = 0
+\end{equation}
+
+See Equation~\eqref{eq:euler}.
+```
+
+## Bibliography
+
+Use `biblatex` with the `biber` backend for modern bibliography management.
+
+### In the preamble:
+
+```Latex
+\usepackage[backend=biber, style=numeric]{biblatex}
+\addbibresource{references.bib}
+```
+
+### Citation commands:
+
+| Command | Description |
+| ------- | ----------- |
+| `\cite{key}` | Basic citation |
+| `\parencite{key}` | Parenthetical citation |
+| `\textcite{key}` | Textual citation (Author (Year)) |
+| `\cite{key1, key2}` | Multiple citations |
+| `\printbibliography` | Print the bibliography |
+
+### BibTeX entry format (in `.bib` file):
+
+```bibtex
+@book{lamport1994,
+    author    = {Lamport, Leslie},
+    title     = {LaTeX: A Document Preparation System},
+    publisher = {Addison-Wesley},
+    year      = {1994},
+}
+```
+
+### Compiling with bibliography:
+
+```
+pdflatex main.tex
+biber main
+pdflatex main.tex
+pdflatex main.tex
+```

@@ -1,3 +1,7 @@
+% Voltage Loop Circuit (Kirchhoff's Voltage Law)
+% Demonstrates: TikZ circuits.ee.IEC library with voltage sources and resistors.
+% Compile with: pdflatex main.tex
+
 \documentclass[tikz,border=5]{standalone}
 \usetikzlibrary{circuits.ee.IEC,calc}
 \begin{document}
@@ -9,6 +13,7 @@
   circuit declare annotation={circular annotation}{0}
     { (270:3/16) edge [to path={ arc (270:0:1/8) } ] () }]
 
+% --- Circuit loop: 20V source → R (3Ω) → 10V source → R → back ---
 \draw (0,0)  to [voltage source={direction info={volt=20}}] ++(0,1);
 \draw (0,1)  to [resistor={info={$R$},ohm'=3}]  (2,1);
 \draw (2,1)  to [voltage source ={direction info={volt=10}}] (2,0);

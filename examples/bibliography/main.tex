@@ -1,0 +1,42 @@
+% Bibliography Example
+% Demonstrates: BibLaTeX with Biber backend for managing references.
+% Compile with:
+%   pdflatex main.tex
+%   biber main
+%   pdflatex main.tex
+%   pdflatex main.tex
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage[backend=biber, style=numeric, sorting=nyt]{biblatex}
+
+\addbibresource{references.bib}
+
+\title{Bibliography Example}
+\author{LaTeX Tutorial}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\LaTeX{} was originally created by Leslie Lamport as a set of macros on top
+of Donald Knuth's \TeX{} typesetting system~\cite{lamport1994latex}.
+The underlying \TeX{} engine is described in \textit{The \TeX{}book}~\cite{knuth1984texbook}.
+
+For a comprehensive guide to \LaTeX{}, see the companion book~\cite{mittelbach2004companion}.
+
+\section{Using Citations}
+
+\begin{itemize}
+    \item Single citation: \cite{lamport1994latex}
+    \item Multiple citations: \cite{knuth1984texbook, mittelbach2004companion}
+    \item Parenthetical: \parencite{lamport1994latex}
+    \item Textual: \textcite{knuth1984texbook}
+\end{itemize}
+
+\printbibliography
+
+\end{document}

@@ -1,0 +1,112 @@
+% Op-Amp Circuits
+% Demonstrates: inverting, non-inverting, and differential amplifier configurations.
+% Compile with: pdflatex main.tex
+
+\documentclass[border=10pt]{standalone}
+\usepackage[american]{circuitikz}
+
+\begin{document}
+\begin{circuitikz}[scale=0.85, transform shape]
+
+% =============================================================================
+% Circuit 1: Inverting Amplifier
+% =============================================================================
+\begin{scope}[shift={(0, 0)}]
+    \node[font=\bfseries\large] at (3, 4) {Inverting Amplifier};
+
+    % Op-amp
+    \node[op amp, noinv input up] (opamp) at (3, 1.5) {};
+
+    % Input resistor R1
+    \draw (0, 2) node[left] {$V_{\text{in}}$}
+        to[R, l=$R_1$] (opamp.-)  ;
+
+    % Feedback resistor Rf
+    \draw (opamp.-) -- ++(0, 1.5) coordinate (fb)
+        to[R, l=$R_f$] (fb -| opamp.out) -- (opamp.out);
+
+    % Non-inverting input to ground
+    \draw (opamp.+) -- ++(0, -0.5) node[ground] {};
+
+    % Output
+    \draw (opamp.out) -- ++(1.5, 0) node[right] {$V_{\text{out}} = -\dfrac{R_f}{R_1}\,V_{\text{in}}$};
+\end{scope}
+
+% =============================================================================
+% Circuit 2: Non-Inverting Amplifier
+% =============================================================================
+\begin{scope}[shift={(10, 0)}]
+    \node[font=\bfseries\large] at (3, 4) {Non-Inverting Amplifier};
+
+    % Op-amp
+    \node[op amp, noinv input up] (opamp) at (3, 1.5) {};
+
+    % Input to non-inverting
+    \draw (opamp.+) -- ++(-1.5, 0) node[left] {$V_{\text{in}}$};
+
+    % Feedback network
+    \draw (opamp.-) -- ++(0, -1) coordinate (gnd)
+        to[R, l_=$R_1$] (gnd |- 0,-1) node[ground] {};
+
+    \draw (opamp.-) -- ++(0, 1.5) coordinate (fb)
+        to[R, l=$R_f$] (fb -| opamp.out) -- (opamp.out);
+
+    % Output
+    \draw (opamp.out) -- ++(1.5, 0)
+        node[right] {$V_{\text{out}} = \left(1 + \dfrac{R_f}{R_1}\right)V_{\text{in}}$};
+\end{scope}
+
+% =============================================================================
+% Circuit 3: Voltage Follower (Buffer)
+% =============================================================================
+\begin{scope}[shift={(0, -7)}]
+    \node[font=\bfseries\large] at (3, 4) {Voltage Follower};
+
+    % Op-amp
+    \node[op amp, noinv input up] (opamp) at (3, 1.5) {};
+
+    % Input
+    \draw (opamp.+) -- ++(-1.5, 0) node[left] {$V_{\text{in}}$};
+
+    % Direct feedback (output to inverting)
+    \draw (opamp.out) -- ++(0.5, 0) coordinate (out)
+        -- ++(0, -2) -| (opamp.-);
+
+    % Output
+    \draw (out) -- ++(1, 0) node[right] {$V_{\text{out}} = V_{\text{in}}$};
+\end{scope}
+
+% =============================================================================
+% Circuit 4: Summing Amplifier
+% =============================================================================
+\begin{scope}[shift={(10, -7)}]
+    \node[font=\bfseries\large] at (3, 4.5) {Summing Amplifier};
+
+    % Op-amp
+    \node[op amp, noinv input up] (opamp) at (4, 1.5) {};
+
+    % Input resistors
+    \draw (0, 3) node[left] {$V_1$}
+        to[R, l=$R_1$] (2.5, 3) -- (2.5, 2);
+    \draw (0, 2) node[left] {$V_2$}
+        to[R, l=$R_2$] (2.5, 2);
+    \draw (0, 1) node[left] {$V_3$}
+        to[R, l=$R_3$] (2.5, 1) -- (2.5, 2);
+
+    % Connect to inverting input
+    \draw (2.5, 2) -- (opamp.-);
+
+    % Feedback resistor
+    \draw (opamp.-) ++(0, 0) -- ++(0, 1.5) coordinate (fb)
+        to[R, l=$R_f$] (fb -| opamp.out) -- (opamp.out);
+
+    % Non-inverting to ground
+    \draw (opamp.+) -- ++(0, -0.5) node[ground] {};
+
+    % Output
+    \draw (opamp.out) -- ++(0.8, 0)
+        node[right, font=\small] {$V_{\text{out}} = -R_f\!\left(\dfrac{V_1}{R_1}+\dfrac{V_2}{R_2}+\dfrac{V_3}{R_3}\right)$};
+\end{scope}
+
+\end{circuitikz}
+\end{document}

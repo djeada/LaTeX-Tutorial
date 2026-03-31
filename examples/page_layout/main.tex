@@ -1,0 +1,107 @@
+% Page Layout
+% Demonstrates: geometry, fancyhdr, two-column layout, margin notes.
+% Compile with: pdflatex main.tex
+
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% --- Page geometry: custom margins ---
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=3cm,
+    marginparwidth=2cm,   % width for margin notes
+]{geometry}
+
+% --- Headers and footers ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}                              % Clear default headers/footers
+\fancyhead[L]{\textit{LaTeX Tutorial}}  % Left header
+\fancyhead[R]{\thepage}                 % Right header: page number
+\fancyfoot[C]{\footnotesize Page Layout Example}  % Center footer
+\renewcommand{\headrulewidth}{0.4pt}    % Header rule
+\renewcommand{\footrulewidth}{0.4pt}    % Footer rule
+
+% --- Packages for demo content ---
+\usepackage{lipsum}        % Dummy text
+\usepackage{marginnote}    % Better margin notes
+\usepackage{multicol}      % Multi-column environments
+
+\title{Page Layout and Typography}
+\author{LaTeX Tutorial}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}  % Apply fancy style to title page too
+
+% =============================================================================
+\section{Custom Margins with \texttt{geometry}}
+% =============================================================================
+
+The \texttt{geometry} package controls page dimensions. This document uses:
+
+\begin{verbatim}
+\usepackage[top=2.5cm, bottom=2.5cm,
+            left=3cm, right=3cm]{geometry}
+\end{verbatim}
+
+\lipsum[1]
+
+% =============================================================================
+\section{Headers and Footers with \texttt{fancyhdr}}
+% =============================================================================
+
+Look at the top and bottom of this page. The header shows the document title
+on the left and page number on the right. The footer has centered text.
+
+\marginnote{\scriptsize This is a margin note! Use them for asides.}[0cm]
+
+Key commands:
+\begin{itemize}
+    \item \verb|\fancyhead[L]{...}| --- left header
+    \item \verb|\fancyhead[R]{...}| --- right header
+    \item \verb|\fancyfoot[C]{...}| --- center footer
+    \item \verb|\renewcommand{\headrulewidth}{0.4pt}| --- header line
+\end{itemize}
+
+\lipsum[2]
+
+% =============================================================================
+\section{Two-Column Layout}
+% =============================================================================
+
+You can switch to two columns for part of a document using the
+\texttt{multicol} environment:
+
+\begin{multicols}{2}
+\lipsum[3]
+
+\marginnote{\scriptsize Another margin note, visible in multi-column mode.}
+
+\lipsum[4]
+\end{multicols}
+
+% =============================================================================
+\section{Margin Notes}
+% =============================================================================
+
+Margin notes\marginnote{\scriptsize $E = mc^2$} are useful for annotations,
+definitions, or quick references. Use \verb|\marginnote{text}| from the
+\texttt{marginnote} package (more reliable than \verb|\marginpar|).
+
+\lipsum[5]
+
+% =============================================================================
+\section{Three-Column Layout}
+% =============================================================================
+
+\begin{multicols}{3}[\subsection*{Three narrow columns}]
+\small
+\lipsum[6]
+\end{multicols}
+
+\end{document}

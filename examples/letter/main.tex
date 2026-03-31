@@ -1,0 +1,56 @@
+% Formal Letter
+% Demonstrates: the letter document class with sender/recipient addresses.
+% Compile with: pdflatex main.tex
+
+\documentclass[12pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+
+% --- Sender information ---
+\name{Jane Smith}
+\address{%
+    123 University Avenue \\
+    Springfield, IL 62701 \\
+    United States%
+}
+\signature{Jane Smith \\ \small PhD Candidate, Department of Mathematics}
+
+% --- Date ---
+\date{\today}
+
+\begin{document}
+
+\begin{letter}{%
+    Prof.\ John Doe \\
+    Department of Computer Science \\
+    456 College Road \\
+    Shelbyville, IL 62565%
+}
+
+\opening{Dear Professor Doe,}
+
+I am writing to express my interest in the Research Assistant position
+advertised on your department's website. I am currently a PhD candidate in
+the Department of Mathematics at the University of Springfield, where my
+research focuses on numerical methods for partial differential equations.
+
+During my studies, I have gained extensive experience with scientific
+computing, data analysis, and technical writing in \LaTeX{}. I believe
+these skills would be a strong fit for your group's work on computational
+fluid dynamics.
+
+I have attached my CV and a list of references for your review. I would
+welcome the opportunity to discuss how my background aligns with your
+research goals.
+
+Thank you for your time and consideration.
+
+\closing{Sincerely,}
+
+\encl{Curriculum Vitae \\ List of References}
+\cc{Dr.\ Alice Johnson, Department Chair}
+
+\end{letter}
+\end{document}

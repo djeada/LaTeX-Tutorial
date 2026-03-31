@@ -1,0 +1,72 @@
+% Custom Commands and Environments
+% Demonstrates: \newcommand, \renewcommand, \newenvironment, and command arguments.
+% Compile with: pdflatex main.tex
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+% --- Simple command: shortcut for a frequently used expression ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+% --- Command with arguments: partial derivative ---
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+% --- Command with optional argument: colored emphasis ---
+\newcommand{\highlight}[2][yellow]{%
+    \colorbox{#1}{#2}%
+}
+
+% --- Custom environment: a "theorem" box ---
+\newenvironment{mythm}[1][Theorem]{%
+    \begin{tcolorbox}[title=#1, colback=blue!5, colframe=blue!50!black]
+}{%
+    \end{tcolorbox}
+}
+
+% --- Custom environment: a "note" block ---
+\newenvironment{mynote}{%
+    \par\noindent\textbf{Note:}\itshape\space
+}{%
+    \par
+}
+
+\title{Custom Commands and Environments}
+\author{LaTeX Tutorial}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Custom Commands}
+
+Number sets with shortcuts: $\N \subset \Z \subset \R$.
+
+\medskip
+
+Partial derivative macro: $\pd{f}{x}$ and $\pd{^2 f}{x^2}$.
+
+\medskip
+
+Highlighted text: \highlight{default yellow} and \highlight[cyan]{custom color}.
+
+\section{Custom Environments}
+
+\begin{mythm}
+For every $\epsilon > 0$, there exists $\delta > 0$ such that
+$|x - a| < \delta \implies |f(x) - L| < \epsilon$.
+\end{mythm}
+
+\begin{mythm}[Pythagorean Theorem]
+In a right triangle: $a^2 + b^2 = c^2$.
+\end{mythm}
+
+\begin{mynote}
+Custom environments let you wrap recurring formatting patterns
+into reusable blocks, keeping your document source clean and consistent.
+\end{mynote}
+
+\end{document}

@@ -1,0 +1,101 @@
+% Logic Gates
+% Demonstrates: AND, OR, NOT, NAND, NOR, XOR gates using CircuiTikz.
+% Compile with: pdflatex main.tex
+
+\documentclass[border=10pt]{standalone}
+\usepackage[american]{circuitikz}
+
+\begin{document}
+\begin{circuitikz}[scale=0.9, transform shape]
+
+% =============================================================================
+% Row 1: Basic gates
+% =============================================================================
+
+% --- AND gate ---
+\begin{scope}[shift={(0, 0)}]
+    \node[and port] (and) at (0,0) {};
+    \draw (and.in 1) -- ++(-1, 0) node[left] {$A$};
+    \draw (and.in 2) -- ++(-1, 0) node[left] {$B$};
+    \draw (and.out) -- ++(1, 0) node[right] {$A \cdot B$};
+    \node[font=\bfseries, above] at (0, 1) {AND};
+\end{scope}
+
+% --- OR gate ---
+\begin{scope}[shift={(5, 0)}]
+    \node[or port] (or) at (0,0) {};
+    \draw (or.in 1) -- ++(-1, 0) node[left] {$A$};
+    \draw (or.in 2) -- ++(-1, 0) node[left] {$B$};
+    \draw (or.out) -- ++(1, 0) node[right] {$A + B$};
+    \node[font=\bfseries, above] at (0, 1) {OR};
+\end{scope}
+
+% --- NOT gate ---
+\begin{scope}[shift={(10, 0)}]
+    \node[not port] (not) at (0,0) {};
+    \draw (not.in) -- ++(-1, 0) node[left] {$A$};
+    \draw (not.out) -- ++(1, 0) node[right] {$\overline{A}$};
+    \node[font=\bfseries, above] at (0, 1) {NOT};
+\end{scope}
+
+% =============================================================================
+% Row 2: Derived gates
+% =============================================================================
+
+% --- NAND gate ---
+\begin{scope}[shift={(0, -3.5)}]
+    \node[nand port] (nand) at (0,0) {};
+    \draw (nand.in 1) -- ++(-1, 0) node[left] {$A$};
+    \draw (nand.in 2) -- ++(-1, 0) node[left] {$B$};
+    \draw (nand.out) -- ++(1, 0) node[right] {$\overline{A \cdot B}$};
+    \node[font=\bfseries, above] at (0, 1) {NAND};
+\end{scope}
+
+% --- NOR gate ---
+\begin{scope}[shift={(5, -3.5)}]
+    \node[nor port] (nor) at (0,0) {};
+    \draw (nor.in 1) -- ++(-1, 0) node[left] {$A$};
+    \draw (nor.in 2) -- ++(-1, 0) node[left] {$B$};
+    \draw (nor.out) -- ++(1, 0) node[right] {$\overline{A + B}$};
+    \node[font=\bfseries, above] at (0, 1) {NOR};
+\end{scope}
+
+% --- XOR gate ---
+\begin{scope}[shift={(10, -3.5)}]
+    \node[xor port] (xor) at (0,0) {};
+    \draw (xor.in 1) -- ++(-1, 0) node[left] {$A$};
+    \draw (xor.in 2) -- ++(-1, 0) node[left] {$B$};
+    \draw (xor.out) -- ++(1, 0) node[right] {$A \oplus B$};
+    \node[font=\bfseries, above] at (0, 1) {XOR};
+\end{scope}
+
+% =============================================================================
+% Row 3: Combinational example — Half Adder
+% =============================================================================
+\begin{scope}[shift={(3, -8.5)}]
+    \node[font=\bfseries\large, above] at (2.5, 2.5) {Half Adder};
+
+    % XOR for Sum
+    \node[xor port] (xor) at (2, 1) {};
+    % AND for Carry
+    \node[and port] (and) at (2, -1) {};
+
+    % Inputs
+    \draw (xor.in 1) -- ++(-2, 0) node[left] {$A$} coordinate (A);
+    \draw (xor.in 2) -- ++(-2, 0) node[left] {$B$} coordinate (B);
+
+    % Connect inputs to AND gate too
+    \draw (A) |- (and.in 1);
+    \draw (B) |- (and.in 2);
+
+    % Outputs
+    \draw (xor.out) -- ++(1.5, 0) node[right] {Sum $= A \oplus B$};
+    \draw (and.out) -- ++(1.5, 0) node[right] {Carry $= A \cdot B$};
+
+    % Junction dots
+    \filldraw (A) circle (2pt);
+    \filldraw (B) circle (2pt);
+\end{scope}
+
+\end{circuitikz}
+\end{document}

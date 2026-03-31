@@ -1,0 +1,144 @@
+% Feynman Diagrams
+% Demonstrates: TikZ-Feynman-style diagrams (manual drawing, no external package).
+% Compile with: pdflatex main.tex
+
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{
+    arrows.meta,
+    decorations.pathmorphing,
+    decorations.markings,
+    positioning,
+}
+
+% --- Fermion line (solid with arrow) ---
+\tikzset{
+    fermion/.style={
+        thick,
+        postaction={decorate, decoration={
+            markings, mark=at position 0.55 with {\arrow{Stealth[length=6pt]}}
+        }},
+    },
+    antifermion/.style={
+        thick,
+        postaction={decorate, decoration={
+            markings, mark=at position 0.55 with {\arrowreversed{Stealth[length=6pt]}}
+        }},
+    },
+    photon/.style={
+        thick, decorate,
+        decoration={snake, amplitude=2pt, segment length=6pt},
+    },
+    gluon/.style={
+        thick, decorate,
+        decoration={coil, amplitude=3pt, segment length=5pt},
+    },
+    vertex/.style={
+        circle, fill=black, inner sep=1.5pt,
+    },
+}
+
+\begin{document}
+\begin{tikzpicture}[node distance=2cm, every node/.style={font=\small}]
+
+% =============================================================================
+% Diagram 1: QED vertex — electron emits photon
+% =============================================================================
+\begin{scope}[shift={(0,0)}]
+    \node[vertex] (v) at (0,0) {};
+
+    % Incoming electron
+    \draw[fermion] (-2.5, -1.5) node[left] {$e^-$} -- (v);
+    % Outgoing electron
+    \draw[fermion] (v) -- (2.5, -1.5) node[right] {$e^-$};
+    % Photon
+    \draw[photon] (v) -- (0, 2) node[above] {$\gamma$};
+
+    \node[font=\bfseries, anchor=north] at (0, -2.5) {QED Vertex};
+\end{scope}
+
+% =============================================================================
+% Diagram 2: Electron-positron annihilation → two photons
+% =============================================================================
+\begin{scope}[shift={(7,0)}]
+    \node[vertex] (v1) at (-0.8, 0) {};
+    \node[vertex] (v2) at (0.8, 0) {};
+
+    % Incoming electron
+    \draw[fermion] (-3, -1.5) node[left] {$e^-$} -- (v1);
+    % Incoming positron
+    \draw[antifermion] (-3, 1.5) node[left] {$e^+$} -- (v1);
+    % Internal propagator (virtual photon)
+    \draw[photon] (v1) -- (v2) node[midway, below=6pt] {$\gamma^*$};
+    % Outgoing muon pair
+    \draw[fermion] (v2) -- (3, 1.5) node[right] {$\mu^-$};
+    \draw[antifermion] (v2) -- (3, -1.5) node[right] {$\mu^+$};
+
+    \node[font=\bfseries, anchor=north] at (0, -2.5) {$e^+e^- \to \mu^+\mu^-$};
+\end{scope}
+
+% =============================================================================
+% Diagram 3: Compton scattering
+% =============================================================================
+\begin{scope}[shift={(14,0)}]
+    \node[vertex] (v1) at (-1, 0) {};
+    \node[vertex] (v2) at (1, 0) {};
+
+    % Incoming electron
+    \draw[fermion] (-3.5, -1.5) node[left] {$e^-$} -- (v1);
+    % Internal electron (propagator)
+    \draw[fermion] (v1) -- (v2);
+    % Outgoing electron
+    \draw[fermion] (v2) -- (3.5, -1.5) node[right] {$e^-$};
+    % Incoming photon
+    \draw[photon] (-3.5, 1.5) node[left] {$\gamma$} -- (v1);
+    % Outgoing photon
+    \draw[photon] (v2) -- (3.5, 1.5) node[right] {$\gamma$};
+
+    \node[font=\bfseries, anchor=north] at (0, -2.5) {Compton Scattering};
+\end{scope}
+
+% =============================================================================
+% Diagram 4: Gluon exchange (QCD)
+% =============================================================================
+\begin{scope}[shift={(3.5,-7)}]
+    \node[vertex] (v1) at (0, 1) {};
+    \node[vertex] (v2) at (0, -1) {};
+
+    % Top quark line
+    \draw[fermion] (-3, 2) node[left] {$q$} -- (v1);
+    \draw[fermion] (v1) -- (3, 2) node[right] {$q$};
+
+    % Bottom quark line
+    \draw[fermion] (-3, -2) node[left] {$q$} -- (v2);
+    \draw[fermion] (v2) -- (3, -2) node[right] {$q$};
+
+    % Gluon exchange
+    \draw[gluon] (v1) -- (v2) node[midway, right=6pt] {$g$};
+
+    \node[font=\bfseries, anchor=north] at (0, -3.2) {Gluon Exchange (QCD)};
+\end{scope}
+
+% =============================================================================
+% Diagram 5: Beta decay (W boson)
+% =============================================================================
+\begin{scope}[shift={(10.5,-7)}]
+    \node[vertex] (v1) at (0, 0) {};
+    \node[vertex] (v2) at (2.5, 0) {};
+
+    % Neutron → proton (quark level: d → u)
+    \draw[fermion] (-3, -1.5) node[left] {$d$} -- (v1);
+    \draw[fermion] (v1) -- (-3, 1.5) node[left] {$u$};
+
+    % W boson propagator
+    \draw[photon] (v1) -- (v2) node[midway, above=6pt] {$W^-$};
+
+    % Lepton pair
+    \draw[fermion] (v2) -- (5, 1.5) node[right] {$e^-$};
+    \draw[antifermion] (v2) -- (5, -1.5) node[right] {$\bar{\nu}_e$};
+
+    \node[font=\bfseries, anchor=north] at (1.2, -3.2) {$\beta^-$ Decay};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}

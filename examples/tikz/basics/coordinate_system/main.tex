@@ -1,21 +1,38 @@
+% Coordinate System Example
+% Demonstrates: axes, grid, tick marks, and labeled coordinates in TikZ.
+% Compile with: pdflatex main.tex
+
 \documentclass{article}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,arrows}
+\usetikzlibrary{arrows.meta}
+
 \begin{document}
-\begin{tikzpicture}[thick,scale=1, every node/.style={scale=2}]
+\begin{tikzpicture}[thick, scale=1, every node/.style={scale=1.2}]
 
+% --- Grid ---
+\draw[lightgray, thin] (-4,-4) grid (4,4);
 
-\draw[->] (-3, 0) -- (9, 0) node[right] {$x$};
-\draw[->] (0, -3) -- (0, 8) node[above] {$y$};
+% --- Axes ---
+\draw[-{Stealth}, very thick] (-4.5, 0) -- (4.5, 0) node[right] {$x$};
+\draw[-{Stealth}, very thick] (0, -4.5) -- (0, 4.5) node[above] {$y$};
 
-% draw the curves
-\draw[ domain=-2:8, smooth, variable=\x, blue] plot ({\x}, {0.8*\x});
-\draw[ domain=-3:3, smooth, variable=\y, red]  plot ({\y*\y}, {2*\y});
+% --- Tick marks on x-axis ---
+\foreach \x in {-4,-3,...,-1,1,2,...,4} {
+    \draw (\x, 0.1) -- (\x, -0.1) node[below, font=\small] {$\x$};
+}
 
-% draw the area between the curves
-\draw[fill=gray!20,scale=0.82, domain=0:3, smooth, variable=\y] plot ({0.83*\y*\y}, {2*\y}) -- (0,0) -- (0,2) -- cycle;
+% --- Tick marks on y-axis ---
+\foreach \y in {-4,-3,...,-1,1,2,...,4} {
+    \draw (0.1, \y) -- (-0.1, \y) node[left, font=\small] {$\y$};
+}
 
-\node[circle, fill=black,inner sep=2pt,label=-10:\color{black}$\frac{4a}{m^2};\frac{4a}{m}$]at (6,4.9){};
+% --- Origin label ---
+\node[below left, font=\small] at (0,0) {$0$};
+
+% --- Plot some points ---
+\filldraw[blue] (2,3) circle (2pt) node[above right] {$(2, 3)$};
+\filldraw[red]  (-3,1) circle (2pt) node[above left] {$(-3, 1)$};
+\filldraw[green!60!black] (1,-2) circle (2pt) node[below right] {$(1, -2)$};
 
 \end{tikzpicture}
 \end{document}
