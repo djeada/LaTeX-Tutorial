@@ -95,10 +95,8 @@ Contour lines of $f(x,y) = x^2 + y^2$:
     view={0}{90},
     colormap/hot,
 ]
-    \addplot3[contour gnuplot={
-        levels={1, 2, 4, 8, 12, 16},
-        draw color=black,
-    }, domain=-4:4, domain y=-4:4, samples=40]
+    \addplot3[surf, shader=interp,
+        domain=-4:4, domain y=-4:4, samples=40]
         {x^2 + y^2};
 \end{axis}
 \end{tikzpicture}
