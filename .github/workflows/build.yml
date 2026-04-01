@@ -32,8 +32,10 @@ jobs:
 
       - name: Compile all examples
         run: |
-          set -e
           FAILED=0
+          FAIL_LIST=""
+          PASS_COUNT=0
+          FAIL_COUNT=0
           
           # Compile each .tex file
           for texfile in $(find examples -name '*.tex'); do
@@ -49,21 +51,31 @@ jobs:
                 pdflatex -interaction=nonstopmode -halt-on-error "$base.tex"
               fi
               echo "✓ $texfile"
+              PASS_COUNT=$((PASS_COUNT + 1))
             else
-              echo "::error::Failed to compile $texfile"
+              echo "::error file=$texfile::Failed to compile $texfile"
               FAILED=1
+              FAIL_COUNT=$((FAIL_COUNT + 1))
+              FAIL_LIST="$FAIL_LIST  - $texfile\n"
             fi
             
             cd "$GITHUB_WORKSPACE"
             echo "::endgroup::"
           done
           
+          TOTAL=$((PASS_COUNT + FAIL_COUNT))
+          echo ""
+          echo "===== Compilation Summary ====="
+          echo "Total: $TOTAL | Passed: $PASS_COUNT | Failed: $FAIL_COUNT"
+          
           if [ "$FAILED" -eq 1 ]; then
-            echo "::error::Some files failed to compile"
+            echo ""
+            echo "The following files failed to compile:"
+            echo -e "$FAIL_LIST"
             exit 1
           fi
           
-          echo "✓ All examples compiled successfully"
+          echo "✓ All $TOTAL examples compiled successfully"
 
       - name: Upload PDFs as artifacts
         if: success()
