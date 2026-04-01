@@ -48,12 +48,12 @@ cutoff: $f_c = \dfrac{1}{2\pi RC}$
 ]
     \addplot[thick, blue, domain=0.01:100, samples=200]
         {-10*log10(1 + x^2)};
-    \addlegend{$20\log_{10}|H|$}
+    \addlegendentry{$20\log_{10}|H|$}
 
     % Asymptotes
     \addplot[dashed, red, domain=0.01:1] {0};
     \addplot[dashed, red, domain=1:100] {-20*log10(x)};
-    \addlegend{Asymptotes}
+    \addlegendentry{Asymptotes}
 
     % -3dB point
     \addplot[only marks, mark=*, mark size=3pt, black]
@@ -95,12 +95,12 @@ Transfer function: $H(j\omega) = \dfrac{j\omega RC}{1 + j\omega RC}$
 ]
     \addplot[thick, red, domain=0.01:100, samples=200]
         {-10*log10(1 + 1/x^2)};
-    \addlegend{$20\log_{10}|H|$}
+    \addlegendentry{$20\log_{10}|H|$}
 
     % Asymptotes
     \addplot[dashed, blue, domain=0.01:1] {20*log10(x)};
     \addplot[dashed, blue, domain=1:100] {0};
-    \addlegend{Asymptotes}
+    \addlegendentry{Asymptotes}
 \end{semilogxaxis}
 \end{tikzpicture}
 \end{center}

@@ -69,15 +69,15 @@ First three harmonics of a string fixed at both ends:
 ]
     % n=1 (fundamental)
     \addplot[thick, blue, domain=0:pi] {sin(deg(x))};
-    \addlegend{$n=1$}
+    \addlegendentry{$n=1$}
 
     % n=2 (first overtone)
     \addplot[thick, red, domain=0:pi] {sin(deg(2*x))};
-    \addlegend{$n=2$}
+    \addlegendentry{$n=2$}
 
     % n=3 (second overtone)
     \addplot[thick, green!60!black, domain=0:pi] {sin(deg(3*x))};
-    \addlegend{$n=3$}
+    \addlegendentry{$n=3$}
 
     % Fixed endpoints
     \filldraw (axis cs:0,0) circle (3pt);
@@ -107,16 +107,16 @@ Two waves and their sum (constructive and destructive interference):
 ]
     % Wave 1
     \addplot[thick, blue, domain=0:4*pi] {sin(deg(x))};
-    \addlegend{$y_1 = \sin(x)$}
+    \addlegendentry{$y_1 = \sin(x)$}
 
     % Wave 2 (slightly different frequency)
     \addplot[thick, red, domain=0:4*pi] {sin(deg(1.15*x))};
-    \addlegend{$y_2 = \sin(1.15x)$}
+    \addlegendentry{$y_2 = \sin(1.15x)$}
 
     % Superposition (beats)
     \addplot[very thick, purple, domain=0:4*pi, opacity=0.7]
         {sin(deg(x)) + sin(deg(1.15*x))};
-    \addlegend{$y_1 + y_2$ (beats)}
+    \addlegendentry{$y_1 + y_2$ (beats)}
 \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -142,17 +142,17 @@ $x(t) = A e^{-\gamma t}\cos(\omega t)$ for different damping levels:
     % Underdamped (gamma = 0.15)
     \addplot[thick, blue, domain=0:10]
         {exp(-0.15*x) * cos(deg(3*x))};
-    \addlegend{Underdamped ($\gamma=0.15$)}
+    \addlegendentry{Underdamped ($\gamma=0.15$)}
 
     % Moderately damped (gamma = 0.5)
     \addplot[thick, red, domain=0:10]
         {exp(-0.5*x) * cos(deg(3*x))};
-    \addlegend{Moderate ($\gamma=0.5$)}
+    \addlegendentry{Moderate ($\gamma=0.5$)}
 
     % Critically damped (gamma = 3, omega_d ≈ 0)
     \addplot[thick, green!60!black, domain=0:10]
         {(1 + 3*x) * exp(-3*x)};
-    \addlegend{Critically damped}
+    \addlegendentry{Critically damped}
 
     % Envelope for underdamped
     \addplot[dashed, blue, thin, domain=0:10] {exp(-0.15*x)};
